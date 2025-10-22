@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "homepage": "https://Sathsarani2002.github.io/clinic-service",
+  "homepage": "https://Sathsarani2002.github.io/manage-doctors",
   "scripts": {
     "dev": "vite",
     "start": "vite",
