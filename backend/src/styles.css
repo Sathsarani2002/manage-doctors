@@ -1,0 +1,661 @@
+
+/* Basic Reset and Defaults */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+body {
+  background: #f6fbfb;
+  color: #222;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* Container & Header Row */
+
+.container {
+  max-width: 1450px;
+  margin: 36px auto;
+  padding: 0 24px;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.page-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #070707;
+  letter-spacing: 0.4px;
+}
+
+.add-btn {
+  background: #11b89a;
+  color: white;
+  padding: 12px 26px;
+  border-radius: 20px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-btn:hover {
+  background: #0d9e84;
+}
+
+
+/* Search Bar */
+.search-wrap {
+  margin: 16px 0 24px 0;
+}
+
+.search-input {
+  width: 449px;               
+  height: 39px;               
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 10px;        
+  background: rgba(217, 217, 217, 0.6); 
+  border: none;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.search-input input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  background: transparent;
+  color: #222;
+}
+
+
+/* Table Card Wrapper */
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 10px solid #d9d9d9; 
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Table Header */
+
+.table-header {
+  background: #11b89a;
+  color: white;
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.4fr 1.2fr 1fr 1fr 0.8fr 1.2fr 1fr;
+  font-weight: 700;
+  align-items: center;
+  font-size: 14px;
+}
+
+/* Table Rows */
+
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.4fr 1.2fr 1fr 1fr 0.8fr 1.2fr 1fr;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 10px solid #d9d9d9;
+  transition: background 0.2s ease-in-out;
+  min-height: 60px;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row:hover {
+  background: #f2fbfa;
+}
+
+
+/* Table Cell Formatting */
+
+.table-row > div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-row .time {
+  text-align: center;
+  color: #323C47;
+}
+
+/* Rating Stars */
+.stars {
+  color: #f5c45e;
+  font-size: 13px;
+}
+
+/* Availability */
+.available {
+  color: #11b89a;
+  font-weight: 700;
+}
+
+.unavailable {
+  color: #e24a4a;
+  font-weight: 700;
+}
+
+
+/* Action Buttons */
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.icon-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.icon-btn.edit {
+  color: #1877f2;
+}
+
+.icon-btn.delete {
+  color: #ff3b3b;
+}
+
+.icon-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+
+/* Pagination & Footer */
+
+.pager {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 0;
+  color: #7b7b7b;
+  font-size: 14px;
+}
+
+/* Responsive Fix  */
+
+@media (max-width: 950px) {
+  .card {
+    overflow-x: auto;
+  }
+
+  .table-header,
+  .table-row {
+    width: 950px;
+    grid-template-columns: 2fr 1fr 1.4fr 1.2fr 1fr 1fr 0.8fr 1.2fr 1fr;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+}
+
+/* Modal / Overlay */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.52); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 18px;
+}
+
+/* centered modal card with requested fixed size & corner radius */
+.modal {
+  width: 663px;            
+  height: 763px;            
+  max-width: 98%;
+  max-height: 98%;
+  background: #ffffff;
+  border-radius: 10px;      
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: modalIn .12s ease-out;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+/* subtle appear */
+@keyframes modalIn {
+  from { transform: translateY(-8px) scale(.995); opacity:0 }
+  to   { transform: translateY(0) scale(1); opacity:1 }
+}
+
+/* header */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px 26px;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+  border-bottom: 1px solid #efefef;
+}
+.modal-header h2 {
+  margin: 0;
+  font-size: 24px;          
+  font-weight: 900;
+  color: #050505;
+  letter-spacing: 0.2px;
+}
+
+/* HIDE the close icon (diagram doesn't have it) */
+.modal-close { display: none !important; }
+
+/* body: fixed inner scroll area so footer stays visible; center children */
+.modal-body {
+  padding: 18px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;       
+  flex: 1 1 auto;
+  overflow-y: auto;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(250,250,250,1) 100%);
+}
+
+/* each field will be a vertical block with label above input; keep label left-aligned inside field */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 506px; 
+  align-items: flex-start; 
+  margin: 0 auto; 
+}
+
+/* label style */
+.field > label {
+  font-size: 13px;
+  color: #333;
+  font-weight: 600;
+  margin-left: 4px;
+  letter-spacing: 0.1px;
+}
+
+/* typing boxes: pill-shaped, consistent size, inner shadow like image */
+.modal-body input[type="text"],
+.modal-body input[type="email"],
+.modal-body select {
+  width: 506px;            
+  height: 35px;            
+  padding: 8px 14px;
+  border-radius: 10px;     
+  background: #eaeaea;     
+  border: 1px solid #e0e0e0;
+  outline: none;
+  font-size: 14px;
+  color: #222;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 0 rgba(0,0,0,0.02);
+  transition: box-shadow .12s, transform .06s;
+}
+
+/* focus style */
+.modal-body input[type="text"]:focus,
+.modal-body input[type="email"]:focus,
+.modal-body select:focus {
+  box-shadow: 0 4px 14px rgba(16, 185, 143, 0.06); 
+  border-color: rgba(16,185,143,0.35);
+  transform: translateY(-1px);
+}
+
+/* placeholder */
+.modal-body input::placeholder { color:#9a9a9a; }
+
+/* select arrow styling */
+.modal-body select {
+  -webkit-appearance: none; -moz-appearance: none; appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #6c6c6c 50%),
+    linear-gradient(135deg, #6c6c6c 50%, transparent 50%);
+  background-position:
+    calc(100% - 16px) calc(1em + 2px),
+    calc(100% - 11px) calc(1em + 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+
+/* rating row centered */
+.rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding-top: 8px;
+  color: #333;
+}
+.rating-row .label { font-size: 13px; color:#333; font-weight:600; margin-right:6px; }
+.rating-stars { color:#f5c45e; font-size:18px; display:flex; gap:6px; align-items:center; }
+
+/* footer area */
+.modal-footer {
+  display:flex;
+  gap:22px;
+  align-items:center;
+  justify-content:center;
+  padding: 18px 26px;
+  border-top: 1px solid #f2f2f2;
+  background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+}
+
+/* Save and Cancel */
+.save-btn {
+  background: linear-gradient(180deg, #14b79e 0%, #0ea887 100%);
+  color: #fff;
+  padding: 12px 36px;
+  border-radius: 26px;
+  border: none;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 8px 0 rgba(0,0,0,0.04), inset 0 -2px 0 rgba(0,0,0,0.06);
+}
+.save-btn:hover { transform: translateY(-2px); }
+
+.cancel-btn {
+  background: #f1f1f1;
+  color: #222;
+  padding: 12px 30px;
+  border-radius: 22px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* small screens */
+@media (max-width: 720px) {
+  .modal { width: calc(100% - 40px); height: auto; max-height: 96vh; border-radius: 8px; }
+  .modal-body { padding: 14px 18px; gap:10px; }
+  .field { max-width: 100%; }
+  .modal-body input[type="text"],
+  .modal-body input[type="email"],
+  .modal-body select { width: 100%; height: 40px; }
+  .save-btn, .cancel-btn { width: 140px; }
+}
+
+/* Navbar Container */
+.navbar {
+  
+  background-color:  rgb(216, 241, 238);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 3px 0;
+  width: 100%;
+ }
+
+/* Inside Container */
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+/* Logo & Brand */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: -450px;
+}
+
+.nav-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  line-height: -1; /* අතුරු line space එක අඩු කරනවා */
+  
+}
+
+
+
+.brand-name span {
+  color: #000; /* “Care” එකේ වෙනම පාටක් ඕනේ නම් මෙහි */
+}
+.brand-image {
+  width: 120px;
+  height: auto;
+  position: relative;
+  top: 15px;    /* ඉහළ / පහළ adjust */
+  left: 0px;   /* right / left adjust */
+}
+
+
+
+
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  transition: color 0.3s;
+  
+}
+
+.nav-links a:hover {
+  color: #e6efee;
+}
+.nav-links a.home-link {
+  color: rgb(84, 219, 216);
+}
+
+
+/* Book Button */
+.book-btn {
+  background-color: #02b092;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.book-btn:hover {
+  background-color: #01997f;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .book-btn {
+    width: 100%;
+  }
+}
+
+
+/*footer*/
+.footer {
+  background-color: #00bfa6;
+  color: white;
+  padding: 20px 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+  margin: 10px 15px;
+}
+
+.footer-logo {
+  width: 280px;
+  height: auto;
+  margin-bottom: 5px;
+  margin-top: -120px;  /* මේකෙන් image එක ඉහලට යාවි */
+}
+.footer-section.about p {
+  margin-top: -8px;  /* text එක logo එකට ලග යාවි */
+  font-size: 13px;
+  line-height: 1.4;
+  margin-top: 10;       /* text එකට ඉහල margin එක අඩු කරලා */
+  position: relative;
+  top: -85px;           /* text එක image එකට ලග යන ලෙස ඉහලට */
+ left: -10px;
+}
+
+/* Contact & Links style */
+.footer-section h3 {
+  font-size: 18px;
+  margin-bottom: 35px;
+}
+
+.footer-section p,
+.footer-section ul li a {
+  font-size: 15px;
+  line-height: 1;
+  color: white;
+  text-decoration: none;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 5px;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  width: 95%;              /* border line එකේ දිග 50% */
+  margin: 8px auto 0;      /* Top margin 8px, අනික් margin 0; auto = center horizontally */
+  border-top: 2px solid white;
+  padding-top: 10px;
+  font-size: 15px;
+  text-align: center;      /* Text එකත් මැද align කරන්න */
+  padding-left: 0;         /* Left padding අයින් කරන්න */
+  text-align: left;
+}
+
+
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-section {
+    margin: 10px 0;
+  }
+
+  .footer-logo {
+    width: 120px;
+    margin: 0 auto 10px;
+  }
+}
+.footer-section.links ul {
+  display: grid;
+  grid-template-columns: repeat(2, auto); /* 2 columns */
+  gap: 8px 20px; /* vertical and horizontal spacing */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  list-style-type: disc;
+}
+
+.footer-section.links li {
+  margin: 0;
+}
+
+.footer-section.links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+.footer-section.contact {
+  color: white;
+  padding: 0 20px;
+}
+
+.footer-section.contact p {
+  font-size: 16px;
+  margin: 8px 0;
+  display: flex;
+  align-items: baseline; /* Align label and content horizontally */
+}
+
+.footer-section.contact p strong {
+  width: 80px; /* Fix width for labels like Address, Phone, Email */
+  font-weight: bold;
+  margin-right: 10px; /* Adds space between the label and the content */
+}
+
